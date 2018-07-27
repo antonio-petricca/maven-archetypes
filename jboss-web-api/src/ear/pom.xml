@@ -16,6 +16,8 @@
     <packaging>ear</packaging>
 
     <build>
+        <finalName>${application.name}-${application.version}</finalName>
+        
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
