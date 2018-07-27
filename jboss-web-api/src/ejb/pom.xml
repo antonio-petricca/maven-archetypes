@@ -23,20 +23,21 @@
         </dependency>
         
         <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
             <groupId>com.ap.archetypes.jboss-web-api</groupId>
             <artifactId>common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>com.ap.archetypes.jboss-web-api</groupId>
-            <artifactId>logic</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency> 
-        <dependency>
-            <groupId>com.ap.archetypes.jboss-web-api</groupId>
-            <artifactId>model</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>  
     </dependencies>
 
     <build>
@@ -54,11 +55,17 @@
 
         <resources>
             <resource>
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+            </resource>
+            
+            <resource>
                 <directory>src/main/java</directory>
                 <filtering>true</filtering>
                 <targetPath>../filtered-sources/java</targetPath>
             </resource>
         </resources>
+
 
         <!-- Overrule the default pom source directory to match our generated sources so the compiler will pick them up -->
 
