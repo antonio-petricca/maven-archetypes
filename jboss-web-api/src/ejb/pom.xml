@@ -6,12 +6,12 @@
     <parent>
         <groupId>com.ap.archetypes</groupId>
         <artifactId>jboss-web-api</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <groupId>com.ap.archetypes.jboss-web-api</groupId>
     <artifactId>ejb</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     
     <packaging>ejb</packaging>
 
@@ -36,7 +36,7 @@
         <dependency>
             <groupId>com.ap.archetypes.jboss-web-api</groupId>
             <artifactId>common</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 
