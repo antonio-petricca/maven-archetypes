@@ -37,7 +37,7 @@
         <application.version>${project.version}</application.version>
         <application.context.name>${application.name}</application.context.name>
         <application.context.rest>/rest</application.context.rest>
-        <application.jndi.datasource>java:jboss/datasources/MyDS</application.jndi.datasource>
+        <application.jndi.datasource>java:/jboss/datasources/${application.name}-ds</application.jndi.datasource>
 
         <application.path.configuration>/etc/javaee-apps/${application.name}</application.path.configuration>
         <application.path.log>/var/log/javaee-apps/${application.name}</application.path.log>
