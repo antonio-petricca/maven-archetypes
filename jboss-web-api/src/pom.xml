@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ap.archetypes</groupId>
+    <artifactId>jboss-web-api</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+  
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
+        <project.resources.sourceEncoding>${project.build.sourceEncoding}</project.resources.sourceEncoding>
+        
+        <jboss.version>EAP 7.1.0</jboss.version>
+        <java.version>1.8</java.version>
+        <javax.version>7.0</javax.version>
+        <ejb.version>3.1</ejb.version>
+        
+        <commons-configuration.version>1.6</commons-configuration.version>
+        
+        <disruptor.version>3.3.4</disruptor.version> <!-- https://logging.apache.org/log4j/2.0/manual/async.html -->
+        <log4j.version>2.11.0</log4j.version>
+        <slf4j.version>1.7.7</slf4j.version>
+        
+        <hibernate.version>5.1.10.Final</hibernate.version> <!-- https://access.redhat.com/articles/112673#EAP_7 -->
+        <jpa2.version>1.0.0.Final</jpa2.version>
+        <resteasy.version>3.0.24.Final</resteasy.version> <!-- https://docs.jboss.org/resteasy/docs/3.0.24.Final/userguide/html/Maven_and_RESTEasy.html -->
+    
+        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+        <maven-ejb-plugin.version>3.0.1</maven-ejb-plugin.version>
+        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+        <maven-war-plugin.version>3.2.2</maven-war-plugin.version>
+    
+        <application.name>jboss-web-api</application.name>
+        <application.version>${project.version}</application.version>
+        <application.context.name>${application.name}</application.context.name>
+        <application.context.rest>/rest</application.context.rest>
+        <application.jndi.datasource>java:jboss/datasources/MyDS</application.jndi.datasource>
+
+        <application.path.configuration>/etc/javaee-apps/${application.name}</application.path.configuration>
+        <application.path.log>/var/log/javaee-apps/${application.name}</application.path.log>
+    </properties>
+    
+    <name>${application.name}</name>
+    <description>Web API (JBoss EAP (${jboss.version}), Resteasy (${resteasy.version}), EJB (${ejb.version}), JPA/Hibernate (${hibernate.version}), Slf4J/Log4J (${log4j.version}))</description>
+  
+    <modules>
+        <module>common</module>
+        <module>model</module>
+        <module>logic</module>
+        <module>ear</module>
+        <module>ejb</module>
+        <module>web</module>
+    </modules>
+    
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>${javax.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-web-api</artifactId>
+                <version>${javax.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>${disruptor.version}</version>
+            </dependency>
+        
+            <dependency>
+                <groupId>commons-configuration</groupId>
+                <artifactId>commons-configuration</artifactId>
+                <version>${commons-configuration.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-bom</artifactId>
+                <version>${resteasy.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.javax.persistence</groupId>
+                <artifactId>hibernate-jpa-2.1-api</artifactId>
+                <version>${jpa2.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+                
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ejb-plugin</artifactId>
+                    <version>${maven-ejb-plugin.version}</version>
+                    <configuration>
+                        <ejbVersion>${ejb.version}</ejbVersion>
+                    </configuration>
+                </plugin>
+                
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin.version}</version>
+                </plugin>
+                
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>${maven-war-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

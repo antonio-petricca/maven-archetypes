@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# http://maven.apache.org/archetype/maven-archetype-plugin/examples/create-with-property-file.html
+# https://dzone.com/articles/debugging-maven-mojo-plugin
+# https://stackoverflow.com/questions/38490504/how-to-install-maven-archetype-from-local-jar-and-pom-and-also-update-local-cat
+
+CUR_DIR=$(readlink -f $(dirname $0))
+PRJ_SRC_DIR=$(readlink -f ${CUR_DIR}/../src)
+ARCH_SRC_DIR=${PRJ_SRC_DIR}/target/generated-sources/archetype
+
+MVN_FLAGS="-e -X"
+
+mvn clean ${MVN_FLAGS} -f ${CUR_DIR}/../src && \
+mvn archetype:create-from-project ${MVN_FLAGS} -f ${PRJ_SRC_DIR} -Darchetype.properties=${CUR_DIR}/archetype.properties -e -X && \
+mvn install ${MVN_FLAGS} -f ${ARCH_SRC_DIR} -Dfile=$(ls -1 ${PRJ_SRC_DIR}/target/generated-sources/archetype/target/*.jar) && \
+mvn install archetype:update-local-catalog ${MVN_FLAGS} -f ${ARCH_SRC_DIR}

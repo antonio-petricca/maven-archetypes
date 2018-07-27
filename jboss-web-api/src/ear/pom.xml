@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>ear</name>
+  
+    <parent>
+        <groupId>com.ap.archetypes</groupId>
+        <artifactId>jboss-web-api</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.ap.archetypes.jboss-web-api</groupId>
+    <artifactId>ear</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  
+    <packaging>ear</packaging>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <version>6</version>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <modules>
+                        <!-- 
+                            Keep it, if emtpy too, to avoid archetype generation exception in "org.apache.maven.archetype.creator.FilesetArchetypeCreator:720":
+                            
+                            [ERROR] Failed to execute goal org.apache.maven.plugins:maven-archetype-plugin:3.0.1:create-from-project (default-cli) on project jboss-web-api: null: MojoFailureException -> [Help 1]
+org.apache.maven.lifecycle.LifecycleExecutionException: Failed to execute goal org.apache.maven.plugins:maven-archetype-plugin:3.0.1:create-from-project (default-cli) on project jboss-web-api: null
+
+                        -->
+                    </modules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <dependencies>
+        <dependency>
+            <groupId>com.ap.archetypes.jboss-web-api</groupId>
+            <artifactId>ejb</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>com.ap.archetypes.jboss-web-api</groupId>
+            <artifactId>web</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>war</type>
+        </dependency>
+    </dependencies>
+</project>

@@ -1,0 +1,6 @@
+**/target
+**/nb-configuration.xml
+**/.classpath
+**/.project
+**/.settings
+**/.tern-project
