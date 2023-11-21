@@ -21,7 +21,7 @@
         <commons-configuration.version>1.6</commons-configuration.version>
         
         <disruptor.version>3.3.4</disruptor.version> <!-- https://logging.apache.org/log4j/2.0/manual/async.html -->
-        <log4j.version>2.11.0</log4j.version>
+        <log4j.version>2.17.1</log4j.version>
         <slf4j.version>1.7.7</slf4j.version>
         
         <hibernate.version>5.1.10.Final</hibernate.version> <!-- https://access.redhat.com/articles/112673#EAP_7 -->
