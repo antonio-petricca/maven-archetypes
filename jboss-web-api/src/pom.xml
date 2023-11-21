@@ -26,7 +26,7 @@
         
         <hibernate.version>5.1.10.Final</hibernate.version> <!-- https://access.redhat.com/articles/112673#EAP_7 -->
         <jpa2.version>1.0.0.Final</jpa2.version>
-        <resteasy.version>3.0.24.Final</resteasy.version> <!-- https://docs.jboss.org/resteasy/docs/3.0.24.Final/userguide/html/Maven_and_RESTEasy.html -->
+        <resteasy.version>4.6.1.Final</resteasy.version> <!-- https://docs.jboss.org/resteasy/docs/3.0.24.Final/userguide/html/Maven_and_RESTEasy.html -->
     
         <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
         <maven-ejb-plugin.version>3.0.1</maven-ejb-plugin.version>
